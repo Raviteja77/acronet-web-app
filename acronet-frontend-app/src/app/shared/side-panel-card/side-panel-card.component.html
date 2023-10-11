@@ -1,0 +1,9 @@
+<p-card>
+    <ng-template pTemplate="header">
+        <span>{{ cardHeaderLabel }}</span>
+    </ng-template>
+    <p-listbox [options]="acronyms" [(ngModel)]="selectedAcronym" optionLabel="label" (ngModelChange)="handleSelectedAcronym()"></p-listbox>
+    <ng-template pTemplate="footer">
+        <p-button [label]="cardFooterLabel" icon="pi pi-angle-down" iconPos="right"></p-button>
+    </ng-template>
+</p-card>

@@ -1,0 +1,74 @@
+@import '../../../variables';
+
+:host ::ng-deep {
+    .p-card {
+        background: $secondary-background;
+        border-radius: 10px;
+        position: relative;
+        width: 360px;
+        z-index: 1;
+    }
+
+    .p-card-header {
+        background: $primary-background;
+        height: 50px;
+        border-radius: 10px 10px 0 0;
+        display: flex;
+        align-items: center;
+        padding-left: 20px;
+        color: $white;
+        font-weight: 600;
+        line-height: normal;
+        text-transform: uppercase;
+    }
+
+    .p-card-footer {
+        display: flex;
+        justify-content: center;
+    }
+
+    .p-button {
+        border: none;
+        background: transparent;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+        color: $primary-color;
+
+        &:hover {
+            background: transparent !important;
+            color: $primary-color !important;
+            border: none !important;
+            transform: scale(1.12);
+        }
+    }
+
+    .p-button-icon {
+        color: $primary-color;
+    }
+
+    .p-listbox-item {
+        color: $secondary-color !important;
+
+        span {
+
+            &:hover, &:focus {
+                transform: scale(1.12);
+            }
+        }
+
+        &:hover, &:focus {
+            background: transparent !important;
+            color: $primary-color !important;
+        }
+    }
+
+    .p-listbox {
+        background: transparent;
+        border: none;
+    }
+
+    .p-listbox .p-listbox-list {
+        padding-top: 0.75rem !important;
+    }
+}

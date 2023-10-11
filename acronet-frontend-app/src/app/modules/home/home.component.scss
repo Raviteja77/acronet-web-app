@@ -1,0 +1,75 @@
+@import '../../../variables';
+
+.home-container {
+    background: url(../../../assets/clark-seal-bg.svg) no-repeat center fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.1;
+    transform: scaleX(1.8);
+}
+
+.input-box {
+    width: 100%;
+}
+
+.p-input-icon-right {
+    width: 100%;
+}
+
+.p-input-icon-right > i:last-of-type {
+    color: $primary-color;
+    z-index: 1;
+}
+
+.p-input-icon-right > .p-inputtext {
+    width: 100%;
+    background: $secondary-background;
+    border: none;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .p-autocomplete-clear-icon {
+    color: $primary-color !important;
+}
+
+::ng-deep .autocomplete {
+    width: 100%;
+    background: $secondary-background;
+    border: none;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+}
+
+::ng-deep .filter {
+    background: $secondary-background;
+    color: $primary-color;
+    border: none;
+    box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    margin-left: 30px;
+
+    &:hover {
+        background: $primary-background !important;
+        border-color: $primary-background !important;
+    }
+}
+
+@media only screen and (max-width: 1300px) {
+    .details-view {
+        order: 1;
+    }
+}
+
+@media only screen and (min-width: 1200px) and (max-width: 1300px) {
+    .right-sidebar {
+        position: absolute;
+        top: calc(100% - 500px);
+    }
+}
+
+@media only screen and (max-width: 1200px){
+    .right-sidebar {
+        position: unset;
+    }
+}

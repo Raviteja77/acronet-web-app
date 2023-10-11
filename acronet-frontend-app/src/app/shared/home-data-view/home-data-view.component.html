@@ -1,0 +1,39 @@
+<div class="card mt-5">
+    <p-dataView #dv [value]="getAcronyms()" [rows]="2" [paginator]="true">
+        <ng-template let-acronym pTemplate="listItem">
+            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+                <div class="flex flex-column sm:flex-row justify-content-between align-items-center xl:align-items-start flex-1 gap-4">
+                    <div class="flex flex-column align-items-center sm:align-items-start gap-2">
+                        <div class="fullName font-bold">{{ acronym.FullForm }}</div>
+                        <div class="flex flex-column gap-2">
+                            <span class="flex align-items-center gap-1">
+                                <span class="text-sm">{{ acronym.Description }}</span>
+                            </span>
+                            <span class="flex align-items-center gap-1">
+                                <i class="pi pi-map-marker"></i>
+                                <span class="text-sm">{{ acronym.Location }}</span>
+                            </span>
+                            <span class="flex align-items-center gap-1">
+                                <i class="pi pi-phone"></i>
+                                <span class="text-sm">{{ acronym.Phone }}</span>
+                            </span>
+                            <span class="flex align-items-center gap-1">
+                                <i class="pi pi-envelope"></i>
+                                <a href="mailto:{{acronym.Email}}">
+                                    <span class="text-sm email">{{ acronym.Email }}</span>
+                                </a>
+                            </span>
+                            <span class="flex align-items-center gap-1">
+                                <img class="logo-seal" src="../../../assets/logo-seal-only.svg">
+                                <a class="website-link" [href]="acronym.WebsiteLink" target="_blank">
+                                    <span class="text-sm">{{ acronym.WebsiteLink }}</span>
+                                    <i class="pi pi-external-link"></i>
+                                </a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dataView>
+</div>
