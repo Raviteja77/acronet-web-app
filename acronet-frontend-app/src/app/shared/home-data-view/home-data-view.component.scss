@@ -59,4 +59,19 @@
         width: 20px;
         height: 20px;
     }
+
+    .p-dataview-emptymessage {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .no_results {
+        width: 200px;
+    }
+
+    p {
+        color: $primary-color;
+    }
 }

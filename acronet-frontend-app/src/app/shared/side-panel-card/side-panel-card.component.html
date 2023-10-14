@@ -2,8 +2,13 @@
     <ng-template pTemplate="header">
         <span>{{ cardHeaderLabel }}</span>
     </ng-template>
-    <p-listbox #listbox [options]="acronyms" [(ngModel)]="selectedAcronym" optionLabel="label" (ngModelChange)="handleSelectedAcronym()"></p-listbox>
-    <ng-template pTemplate="footer">
+    <p-listbox [options]="acronyms" [(ngModel)]="selectedAcronym" optionLabel="label" (ngModelChange)="handleSelectedAcronym()">
+        <ng-template pTemplate="empty">
+            <img class="no_results" src="../../../assets/no_results.svg"/>
+            <p>No Data found.</p>
+        </ng-template>
+    </p-listbox>
+    <!-- <ng-template pTemplate="footer">
         <p-button [label]="cardFooterLabel" icon="pi pi-angle-down" iconPos="right"></p-button>
-    </ng-template>
+    </ng-template> -->
 </p-card>

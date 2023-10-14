@@ -1,7 +1,7 @@
 <div class="home-container"></div>
 <div class="row flex flex-wrap">
     <div class="xl:col-3 left-sidebar card flex justify-content-center m-5">
-        <app-side-panel-card [acronyms]="acronyms" [cardHeaderLabel]="LABELS.LEFT_CARD_HEADER"
+        <app-side-panel-card [acronyms]="recentAcronyms" [cardHeaderLabel]="LABELS.LEFT_CARD_HEADER"
             [cardFooterLabel]="LABELS.CARD_FOOTER" [searchedAcronym]="searchKeyword"
             (emitSelectedAcronym)="handleSelectedRecentAcronym($event)">
         </app-side-panel-card>
@@ -27,7 +27,7 @@
         <app-home-data-view [searchedAcronym]="searchKeyword"></app-home-data-view>
     </div>
     <div class="xl:col-3 right-sidebar card flex justify-content-center m-5">
-        <app-side-panel-card [acronyms]="acronyms" [cardHeaderLabel]="LABELS.RIGHT_CARD_HEADER"
+        <app-side-panel-card [acronyms]="newlyCreatedAcronyms" [cardHeaderLabel]="LABELS.RIGHT_CARD_HEADER"
             [cardFooterLabel]="LABELS.CARD_FOOTER" [searchedAcronym]="searchKeyword"
             (emitSelectedAcronym)="handleSelectedRecentAcronym($event)">
         </app-side-panel-card>

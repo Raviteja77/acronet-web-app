@@ -10,7 +10,8 @@ import { AutoCompleteEvent } from 'src/app/interfaces/autocomplete-event.interfa
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  acronyms!: AcronymHistory[];
+  recentAcronyms: AcronymHistory[] = [];
+  newlyCreatedAcronyms: AcronymHistory[] = [];
   selectedAcronym!: AcronymHistory;
   searchKeyword!: any;
   filteredGroups: any[] = [];
@@ -22,14 +23,6 @@ export class HomeComponent implements OnInit {
   constructor(private filterService: FilterService) {}
 
   ngOnInit() {
-    this.acronyms = [
-      { value: 'SPS', label: 'SPS - School of Professional Studies' },
-      { value: 'SOM', label: 'SOM - School of Management' },
-      {
-        value: 'BSDT',
-        label: 'BSDT - Becker School of Design & Technology',
-      },
-    ];
     this.groupedAcronyms = [
       {
         label: 'Schools',
@@ -43,11 +36,30 @@ export class HomeComponent implements OnInit {
           },
         ],
       },
+      {
+        label: 'Degrees & Majors',
+        value: 'd&m',
+        items: [
+          {
+            value: 'BA', label: 'BA - Bachelor of Arts',
+          },
+          {
+            value: 'MAED', label: 'MAED - Master of Arts in Education',
+          },
+          {
+            value: 'MSC', label: 'MSC - Master of Communication',
+          },
+        ],
+      },
     ];
   }
 
   handleSelection(data: any): void {
     this.searchKeyword = data;
+    if(this.recentAcronyms.length >= 10){
+      this.recentAcronyms.shift();
+    } 
+    this.recentAcronyms = this.recentAcronyms.concat([data]);
   }
 
   filterGroupedAcronyms(event: AutoCompleteEvent) {

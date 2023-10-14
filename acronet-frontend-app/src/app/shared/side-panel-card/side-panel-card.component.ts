@@ -9,7 +9,7 @@ import { AcronymHistory } from 'src/app/interfaces/acronym-history.interface';
 export class SidePanelCardComponent implements OnChanges{
   selectedAcronym!: AcronymHistory;
 
-  @Input() acronyms!: AcronymHistory[];
+  @Input() acronyms: AcronymHistory[] = [];
   @Input() cardHeaderLabel: string = '';
   @Input() cardFooterLabel: string = '';
   @Input() searchedAcronym: string = '';
