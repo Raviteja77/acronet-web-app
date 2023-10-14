@@ -46,18 +46,20 @@ export class HomeDataViewComponent implements OnChanges{
   ];
 
   getAcronyms() {
-    return this.filteredAcronyms? [this.filteredAcronyms]: this.acronyms;
+    return this.filteredAcronyms? this.filteredAcronyms != 'empty'? [this.filteredAcronyms]: []: this.acronyms;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
     const currentValue = changes['searchedAcronym'].currentValue;
     if(currentValue) {
       this.acronyms.filter(el => {
-        if(el.AcronymName.toLowerCase().includes(currentValue.value.toLowerCase()) && currentValue.label.toLowerCase().includes(el.FullForm.toLowerCase())) {
+        if(el.AcronymName?.toLowerCase()?.includes(currentValue?.value?.toLowerCase()) && currentValue?.label?.toLowerCase()?.includes(el?.FullForm?.toLowerCase())) {
           this.filteredAcronyms = el;
         }
       });
+      if(!this.filteredAcronyms) {
+        this.filteredAcronyms = 'empty';
+      }
     } else {
       this.filteredAcronyms = null;
     }

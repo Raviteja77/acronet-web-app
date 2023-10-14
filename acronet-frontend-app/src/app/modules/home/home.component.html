@@ -2,25 +2,20 @@
 <div class="row flex flex-wrap">
     <div class="xl:col-3 left-sidebar card flex justify-content-center m-5">
         <app-side-panel-card [acronyms]="acronyms" [cardHeaderLabel]="LABELS.LEFT_CARD_HEADER"
-            [cardFooterLabel]="LABELS.CARD_FOOTER" (emitSelectedAcronym)="handleSelectedRecentAcronym($event)">
+            [cardFooterLabel]="LABELS.CARD_FOOTER" [searchedAcronym]="searchKeyword"
+            (emitSelectedAcronym)="handleSelectedRecentAcronym($event)">
         </app-side-panel-card>
     </div>
     <div class="xl:col-3 details-view flex-grow-1 flex my-5 flex-column">
         <div class="flex input-box">
             <span class="p-input-icon-right">
                 <i class="pi pi-search" *ngIf="showSearchIcon"></i>
-                <p-autoComplete field="label" [ngStyle]="{'width': '90%'}" 
-                [style]="{'width': '100%'}" 
-                [inputStyleClass]="'autocomplete'"
-                [(ngModel)]="selectedAcronym" 
-                [group]="true" 
-                [suggestions]="filteredGroups"
-                [showClear]="true"
-                (completeMethod)="filterGroupedAcronyms($event)" 
-                (onSelect)="handleSelection($event)"
-                (ngModelChange)="handleSelectionClear($event)"
-                (onClear)="clearSelection()">
-                <ng-template let-group pTemplate="group">
+                <p-autoComplete field="label" showTransitionOptions hideTransitionOptions [ngStyle]="{'width': '90%'}"
+                    [style]="{'width': '100%'}" [inputStyleClass]="'autocomplete'" [(ngModel)]="selectedAcronym"
+                    [group]="true" [suggestions]="filteredGroups" [showClear]="!showSearchIcon"
+                    (completeMethod)="filterGroupedAcronyms($event)" (onSelect)="handleSelection($event)"
+                    (ngModelChange)="handleSelectionClear($event)" (onClear)="clearSelection()">
+                    <ng-template let-group pTemplate="group">
                         <div class="flex align-items-center">
                             <span>{{ group.label }}</span>
                         </div>
@@ -33,7 +28,8 @@
     </div>
     <div class="xl:col-3 right-sidebar card flex justify-content-center m-5">
         <app-side-panel-card [acronyms]="acronyms" [cardHeaderLabel]="LABELS.RIGHT_CARD_HEADER"
-            [cardFooterLabel]="LABELS.CARD_FOOTER">
+            [cardFooterLabel]="LABELS.CARD_FOOTER" [searchedAcronym]="searchKeyword"
+            (emitSelectedAcronym)="handleSelectedRecentAcronym($event)">
         </app-side-panel-card>
     </div>
 </div>

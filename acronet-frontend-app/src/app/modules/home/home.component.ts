@@ -71,11 +71,13 @@ export class HomeComponent implements OnInit {
     }
 
     this.filteredGroups = filteredGroups;
+    if(filteredGroups.length === 0) {
+      this.searchKeyword = query;
+    }
   }
 
   handleSelectionClear(data: any): void {
     this.showSearchIcon = false;
-    this.searchKeyword = data;
     if(data.length === 0) {
       this.clearSelection();
     }
