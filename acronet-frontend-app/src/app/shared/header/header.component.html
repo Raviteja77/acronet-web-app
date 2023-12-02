@@ -1,5 +1,27 @@
 <p-menubar styleClass="custom-menubar">
     <ng-template pTemplate="start">
-        <img src="../../../assets/logo-seal-only.svg" height="50" class="mx-3" />
+        <img src="../../../assets/logo-seal-only.svg" height="50" class="mx-3" routerLink="/home" />
+    </ng-template>
+    <ng-template pTemplate="end">
+        <ul class="menu-list">
+            <li *ngIf="authService.isLoggedIn && userRole === 'su'" class="menu-list__item" style="margin-top: 4px;"
+            routerLink="/manage-users">Manage Users</li>
+            <li *ngIf="authService.isLoggedIn && isMyAcronymsAvailable" class="menu-list__item" 
+            style="margin-top: 4px;" routerLink="/my-acronyms">Suggested Acronyms</li>
+            <li *ngIf="!authService.isLoggedIn" class="menu-list__item" routerLink="/register">Sign up</li>
+            <li *ngIf="!authService.isLoggedIn" class="menu-list__item" routerLink="/login">Login</li>
+            <!-- <li *ngIf="authService.isLoggedIn" class="menu-list__item" (click)="logout()">Logout</li> -->
+            <li class="menu-list__item" (click)="op.toggle($event)">
+                <span *ngIf="authService.isLoggedIn" class="username">{{username}}</span>
+                <p-avatar *ngIf="authService.isLoggedIn" icon="pi pi-user" styleClass="mr-2" 
+                [style]="{'background-color': '#fff', 'color': '#CC0000'}" shape="circle"></p-avatar>
+            </li>
+        </ul>
     </ng-template>
 </p-menubar>
+
+<p-overlayPanel #op>
+    <ul class="menu-list">
+        <li *ngIf="authService.isLoggedIn" (click)="logout()" style="list-style: none;">Logout</li>
+    </ul>
+</p-overlayPanel>

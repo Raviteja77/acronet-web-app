@@ -2,7 +2,7 @@
 <div class="row flex flex-wrap">
     <div class="xl:col-3 left-sidebar card flex justify-content-center m-5">
         <app-side-panel-card [acronyms]="recentAcronyms" [cardHeaderLabel]="LABELS.LEFT_CARD_HEADER"
-            [cardFooterLabel]="LABELS.CARD_FOOTER" [searchedAcronym]="searchKeyword"
+            [searchedAcronym]="searchKeyword"
             (emitSelectedAcronym)="handleSelectedRecentAcronym($event)">
         </app-side-panel-card>
     </div>
@@ -10,32 +10,27 @@
         <div class="flex input-box">
             <span class="p-input-icon-right">
                 <i class="pi pi-search" *ngIf="showSearchIcon"></i>
-                <p-autoComplete field="label" showTransitionOptions hideTransitionOptions [ngStyle]="{'width': '90%'}"
-                    [style]="{'width': '100%'}" [inputStyleClass]="'autocomplete'" [(ngModel)]="selectedAcronym"
-                    [group]="true" [suggestions]="filteredGroups" [showClear]="!showSearchIcon"
-                    (completeMethod)="filterGroupedAcronyms($event)" (onSelect)="handleSelection($event)"
-                    (ngModelChange)="handleSelectionClear($event)" (onClear)="clearSelection()">
-                    <ng-template let-group pTemplate="group">
-                        <div class="flex align-items-center">
-                            <span>{{ group.label }}</span>
-                        </div>
-                    </ng-template>
-                </p-autoComplete>
+                <form [formGroup]="autoCompleteFormGroup">
+                    <p-autoComplete field="label" autocomplete="true" [ngStyle]="{'width': '90%'}"
+                        [style]="{'width': '100%'}" [inputStyleClass]="'autocomplete'" formControlName="selectedAcronym"
+                        [suggestions]="filteredGroups" [showClear]="!showSearchIcon"
+                        (completeMethod)="filterGroupedAcronyms($event)" (onSelect)="handleSelection($event)"
+                        (ngModelChange)="handleSelectionClear($event)" (onClear)="clearSelection()">
+                        <ng-template let-group pTemplate="group">
+                            <div class="flex align-items-center">
+                                <span>{{ group.label }}</span>
+                            </div>
+                        </ng-template>
+                    </p-autoComplete>
+                </form>
             </span>
-            <p-button icon="pi pi-filter" styleClass="filter" (click)="filterOverlay.toggle($event)"></p-button>
         </div>
-        <app-home-data-view [searchedAcronym]="searchKeyword"></app-home-data-view>
+        <app-home-data-view [searchedAcronym]="searchKeyword" ></app-home-data-view>
     </div>
     <div class="xl:col-3 right-sidebar card flex justify-content-center m-5">
         <app-side-panel-card [acronyms]="newlyCreatedAcronyms" [cardHeaderLabel]="LABELS.RIGHT_CARD_HEADER"
-            [cardFooterLabel]="LABELS.CARD_FOOTER" [searchedAcronym]="searchKeyword"
+            [cardFooterLabel]="LABELS.RIGHT_CARD_FOOTER" [searchedAcronym]="searchKeyword"
             (emitSelectedAcronym)="handleSelectedRecentAcronym($event)">
         </app-side-panel-card>
     </div>
 </div>
-
-<p-overlayPanel #filterOverlay>
-    <ng-template pTemplate="content">
-        <h4>Custom Content</h4>
-    </ng-template>
-</p-overlayPanel>

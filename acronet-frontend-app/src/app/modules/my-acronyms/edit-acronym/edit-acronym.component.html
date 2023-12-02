@@ -1,0 +1,72 @@
+<div class="home-container"></div>
+<div class="form-wrapper">
+    <div class="form-container">
+        <form [formGroup]="editForm" (ngSubmit)="onSubmit()">
+            <div class="form-field">
+                <input class="inputbox" readonly id="acronym_name" formControlName="acronym_name" placeholder="Enter acronym name"/>
+                <div class="error-message"
+                    *ngIf="editForm.get('acronym_name')?.invalid && (editForm.get('acronym_name')?.dirty || editForm.get('acronym_name')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a Acronym Name.</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="inputbox" type="text" id="full_form" formControlName="full_form" placeholder="Enter full form"/>
+                <div class="error-message"
+                    *ngIf="editForm.get('full_form')?.invalid && (editForm.get('full_form')?.dirty || editForm.get('full_form')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a Full Form.</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <textarea rows="5" cols="30" pInputTextarea formControlName="description" placeholder="Enter description"></textarea>
+                <div class="error-message"
+                    *ngIf="editForm.get('description')?.invalid && (editForm.get('description')?.dirty || editForm.get('description')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a Description.</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="inputbox" type="text" id="location" formControlName="location" placeholder="Enter location"/>
+                <div class="error-message"
+                    *ngIf="editForm.get('location')?.invalid && (editForm.get('location')?.dirty || editForm.get('location')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a Location.</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="inputbox" type="text" id="phone_number" formControlName="phone_number" placeholder="Enter phone number"/>
+                <div class="error-message"
+                    *ngIf="editForm.get('phone_number')?.invalid && (editForm.get('phone_number')?.dirty || editForm.get('phone_number')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a Phone Number.</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="inputbox" type="text" id="email" formControlName="email" placeholder="Enter email"/>
+                <div class="error-message"
+                    *ngIf="editForm.get('email')?.invalid && (editForm.get('email')?.dirty || editForm.get('email')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a Email.</label>
+                </div>
+            </div>
+            <div class="form-field" *ngIf="openDialogForSuggestedAcronym && (userRole === 'su' || userRole === 'admin')">
+                <p-dropdown formControlName="status" [options]="status" optionLabel="name" placeholder="Status"></p-dropdown>
+                <div class="error-message"
+                    *ngIf="editForm.get('status')?.invalid && (editForm.get('status')?.dirty || editForm.get('status')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a Status.</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="inputbox" type="text" id="website" formControlName="website" placeholder="Enter website"/>
+                <div class="error-message"
+                    *ngIf="editForm.get('website')?.invalid && (editForm.get('website')?.dirty || editForm.get('website')?.touched)">
+                    <img src="../../../assets/error_icon.svg" />
+                    <label>Please provide a website.</label>
+                </div>
+            </div>
+            <button type="submit" class="create-button" [disabled]="editForm.invalid">Edit {{ buttonName }} Acronym</button>
+        </form>
+    </div>
+</div>

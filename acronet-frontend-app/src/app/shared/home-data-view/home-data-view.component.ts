@@ -1,49 +1,30 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ConfirmationService } from 'primeng/api';
+import { DataView } from 'primeng/dataview';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { AuthService } from 'src/app/auth/auth/auth.service';
 import { Acronym } from 'src/app/interfaces/acronym.interface';
+import { EditAcronymComponent } from 'src/app/modules/my-acronyms/edit-acronym/edit-acronym.component';
+import { AcronymsService } from 'src/app/services/acronyms/acronyms.service';
 
 @Component({
   selector: 'app-home-data-view',
   templateUrl: './home-data-view.component.html',
   styleUrls: ['./home-data-view.component.scss'],
 })
-export class HomeDataViewComponent implements OnChanges{
+export class HomeDataViewComponent implements OnChanges, OnInit {
   @Input() searchedAcronym: string = '';
   filteredAcronyms!: any;
-  acronyms: Acronym[] = [
-    {
-      AcronymName: 'SPS',
-      FullForm: 'School of Professional Studies',
-      Description:
-        'The School of Professional Studies (SPS) serves the needs of recent graduates and working professionals seeking to advance in their jobs and careers. Students of diverse ages and backgrounds learn together in a context where various perspectives are welcomed and all experience is valued.',
-      Location: 'Jonas clark, Clark University, 950 Main street',
-      Phone: '+1 508-793-7218',
-      Email: 'SPS@clarku.edu',
-      CreatedOn: new Date(Date.now()),
-      WebsiteLink: 'https://www.clarku.edu/schools/professional-studies/',
-    },
-    {
-      AcronymName: 'SOM',
-      FullForm: 'School of Management',
-      Description:
-        'As a management school based at a liberal arts university, the School of Management (SOM) provides a rigorous business education focused on a human context. Lessons in ethics and corporate responsibility go hand in hand with accounting and finance — the common ground being leadership, vision, and success.',
-      Location: 'Carlson Hall, Clark University, 950 Main street',
-      Phone: '+1 508-793-7543',
-      Email: 'Somstudentservices@clarku.edu',
-      CreatedOn: new Date(Date.now()),
-      WebsiteLink: 'https://www.clarku.edu/schools/management/',
-    },
-    {
-      AcronymName: 'BSDT',
-      FullForm: 'Becker School of Design & Technology',
-      Description:
-        "Featuring one of the world’s top five Game Design programs and top 10 Master of Fine Arts programs per The Princeton Review, the Becker School of Design & Technology provides students with a real-world studio environment to prepare them for lifelong careers in an exciting, rapidly changing industry. We also offer a 4+1 program, allowing students to obtain a B.A. in Interactive Media Design, then add a fifth year to pursue the MFA.",
-      Location: '950 Main Street',
-      Phone: '+1 508-793-7431',
-      CreatedOn: new Date(Date.now()),
-      Email: 'BSDT@clarku.edu',
-      WebsiteLink: 'https://www.clarku.edu/schools/becker-school-of-design-and-technology/',
-    },
-  ];
+  acronyms: Acronym[] = [];
+  ref!: DynamicDialogRef;
+
+  @ViewChild('dv', {static: false}) dataView!: DataView;
+  userRole: string = '';
+
+  constructor(private acronymsService: AcronymsService, 
+    public authService: AuthService,
+    private dialogService: DialogService,
+    private confirmationService: ConfirmationService) {}
 
   getAcronyms() {
     return this.filteredAcronyms? this.filteredAcronyms != 'empty'? [this.filteredAcronyms]: []: this.acronyms;
@@ -53,7 +34,7 @@ export class HomeDataViewComponent implements OnChanges{
     const currentValue = changes['searchedAcronym'].currentValue;
     if(currentValue) {
       this.acronyms.filter(el => {
-        if(el.AcronymName?.toLowerCase()?.includes(currentValue?.value?.toLowerCase()) && currentValue?.label?.toLowerCase()?.includes(el?.FullForm?.toLowerCase())) {
+        if(el.acronym_name?.toLowerCase()?.includes(currentValue?.value?.toLowerCase()) && currentValue?.label?.toLowerCase()?.includes(el?.full_form?.toLowerCase())) {
           this.filteredAcronyms = el;
         }
       });
@@ -63,5 +44,65 @@ export class HomeDataViewComponent implements OnChanges{
     } else {
       this.filteredAcronyms = null;
     }
+    if(this.dataView)  {
+      this.dataView.first = 0;
+    }
+  }
+
+  ngOnInit(): void {
+    this.getAllAcronyms();
+    this.authService.isLoggedIn$.subscribe(_ => {
+      const user = localStorage.getItem('user');
+      if(user) {
+        this.userRole = JSON.parse(user)['user_type'];
+      }
+    });
+    this.acronymsService.acronymUpdated$.subscribe(data => {
+      if(data) {
+        this.getAllAcronyms();
+      }
+    })
+  }
+
+  getAllAcronyms(): void {
+    this.acronymsService.getAllAcronyms().subscribe(data => {
+      this.acronyms = data;
+      this.acronyms.sort((a, b) => {
+        if(a.full_form === b.full_form) {
+          return 0;
+        }
+        return a.full_form < b.full_form? -1: 1;
+      });
+    });
+  }
+
+  ConfirmationDialog(acronym: Acronym) {
+    this.confirmationService.confirm({
+      message: `Are you sure that you want to delete the acronym <strong>${acronym.acronym_name}</strong>?`,
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.deleteAcronym(acronym.acronym_name);
+      },
+    });
+  }
+
+  deleteAcronym(suggestedAcronymName: string) {
+    this.acronymsService.deleteAcronym(suggestedAcronymName).subscribe((data: any) => {
+      this.acronyms = data;
+    })
+  }
+
+  show(suggestedAcronym: Acronym) {
+    this.ref = this.dialogService.open(EditAcronymComponent, {
+      data: {
+        suggestedAcronym: suggestedAcronym,
+      },
+      header: 'Edit Acronym',
+      width: '70%',
+      contentStyle: { overflow: 'auto' },
+      baseZIndex: 10000,
+      maximizable: true,
+    });
   }
 }

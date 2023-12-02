@@ -9,12 +9,17 @@ import { ListboxModule } from 'primeng/listbox';
 import { FormsModule } from '@angular/forms';
 import { HomeDataViewComponent } from './home-data-view/home-data-view.component';
 import { DataViewModule } from 'primeng/dataview';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { AvatarModule } from 'primeng/avatar';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 @NgModule({
   declarations: [
     HeaderComponent,
     SidePanelCardComponent,
     HomeDataViewComponent,
+    NotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -24,11 +29,15 @@ import { DataViewModule } from 'primeng/dataview';
     ListboxModule,
     FormsModule,
     DataViewModule,
+    AvatarModule,
+    OverlayPanelModule,
+    ConfirmDialogModule
   ],
   exports: [
     HeaderComponent,
     SidePanelCardComponent,
-    HomeDataViewComponent
+    HomeDataViewComponent,
+    NotFoundComponent
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,28 @@
+@import '../../../variables';
+
+.chip {
+    background-color: $info;
+}
+
+.word-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50%;
+}
+
+::ng-deep {
+
+    .pi {
+        color: $primary-color;
+    }
+    
+    .p-button-icon-only {
+        background: transparent;
+        border-color: $primary-color;
+
+        &:hover {
+            background: $white;
+        }
+    }
+}

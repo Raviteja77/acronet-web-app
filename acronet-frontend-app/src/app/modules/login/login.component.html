@@ -1,0 +1,43 @@
+<div class="login-logo"></div>
+<div class="card login-container">
+    <div class="card-body login-card-body">
+        <div class="login-card-label">
+            <div>
+                <span class="login-clark-label">clark</span>
+                <span class="login-university-label">University</span>
+            </div>
+            <img class="login-card-logo" src="../../../assets/logo-seal-only.svg" />
+        </div>
+        <form class="login-form" [formGroup]="userForm" (ngSubmit)="onSubmit(userForm)">
+            <div class="form-field">
+                <input class="inputbox" type="text" id="username" formControlName="user_name" placeholder="username"/>
+                <div class="error-message"
+                    *ngIf="form['user_name']?.invalid && (form['user_name']?.dirty || form['user_name']?.touched)">
+                    <div *ngIf="form['user_name'].errors">
+                        <div class="individual-error" *ngIf="form['user_name'].errors['required']">
+                            <img src="../../../assets/error_icon.svg" /> Please provide a Username.
+                        </div>
+                        <div class="individual-error" *ngIf="form['user_name'].errors['maxlength']">
+                            <img src="../../../assets/error_icon.svg" /> Username cannot exceed more than 50 characters.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="inputbox" type="password" id="password" formControlName="password" placeholder="password" />
+                <div class="error-message"
+                    *ngIf="form['password']?.invalid && (form['password']?.dirty || form['password']?.touched)">
+                    <div *ngIf="form['password'].errors">
+                        <div class="individual-error" *ngIf="form['password'].errors['required']">
+                            <img src="../../../assets/error_icon.svg" /> Please provide a Password.
+                        </div>
+                        <div class="individual-error" *ngIf="form['password'].errors['maxlength']">
+                            <img src="../../../assets/error_icon.svg" /> Password cannot exceed more than 50 characters.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="login-button" [disabled]="userForm.invalid">Login</button>
+        </form>
+    </div>
+</div>

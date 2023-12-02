@@ -68,10 +68,20 @@
     }
 
     .no_results {
-        width: 200px;
+        width: 80px;
+        filter: invert(22%) sepia(76%) saturate(2931%) hue-rotate(6deg) brightness(80%) contrast(156%);
     }
 
     p {
         color: $primary-color;
+    }
+
+    .p-button-icon-only {
+        background: transparent;
+        border-color: $primary-color;
+
+        &:hover {
+            background: $white;
+        }
     }
 }

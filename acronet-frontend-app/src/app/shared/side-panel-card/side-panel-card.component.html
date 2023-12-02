@@ -4,11 +4,15 @@
     </ng-template>
     <p-listbox [options]="acronyms" [(ngModel)]="selectedAcronym" optionLabel="label" (ngModelChange)="handleSelectedAcronym()">
         <ng-template pTemplate="empty">
-            <img class="no_results" src="../../../assets/no_results.svg"/>
-            <p>No Data found.</p>
+            <div class="flex align-items-center justify-content-center flex-column gap-3" style="height: 200px;">
+                <img class="no_results" src="../../../assets/empty_results.svg"/>
+                <p><strong>No Data found.</strong></p>
+            </div>
         </ng-template>
     </p-listbox>
-    <!-- <ng-template pTemplate="footer">
-        <p-button [label]="cardFooterLabel" icon="pi pi-angle-down" iconPos="right"></p-button>
-    </ng-template> -->
+    <ng-template pTemplate="footer">
+        <p-button *ngIf="cardHeaderLabel === LABELS.RIGHT_CARD_HEADER && isLoggedIn" [label]="cardFooterLabel"
+        (onClick)="createArconym()"
+        ></p-button>
+    </ng-template>
 </p-card>

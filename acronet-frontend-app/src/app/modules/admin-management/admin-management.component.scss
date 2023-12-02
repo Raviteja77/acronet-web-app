@@ -1,0 +1,16 @@
+@import '../../../variables';
+
+:host ::ng-deep {
+    .p-button-icon-only {
+        background: transparent;
+        border-color: $primary-color;
+
+        &:hover {
+            background: $white;
+        }
+    }
+
+    .pi {
+        color: $primary-color;
+    }
+}
