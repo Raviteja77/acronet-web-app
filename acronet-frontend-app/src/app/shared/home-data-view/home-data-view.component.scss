@@ -34,11 +34,18 @@
     }
 
     .fullName {
+        word-wrap: break-word;
+        width: 330px;
         color: $primary-color;
         font-size: 18px;
         font-style: normal;
         font-weight: 400;
         line-height: normal;
+    }
+
+    .description {
+        word-wrap: break-word;
+        width: 330px;
     }
 
     .email {

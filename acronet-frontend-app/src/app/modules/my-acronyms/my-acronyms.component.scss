@@ -16,6 +16,11 @@
     justify-content: center;
 }
 
+.word-format {
+    max-width: 200px;
+    word-wrap: break-word;
+}
+
 .status-approved {
     background: #16A34A;
 }
