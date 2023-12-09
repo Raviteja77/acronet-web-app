@@ -1,0 +1,62 @@
+<div class="home-container"></div>
+<div class="register-container flex align-items-center justify-content-center">
+    <p-card header="User Registration" [style]="{ width: '360px' }">
+        <ng-template pTemplate="header">
+            <img class="register-logo" alt="Card" src="../../../assets/logo-seal-only.svg" />
+        </ng-template>
+        <div class="card">
+            <div class="card-body register-card-body">
+                <form class="register-form" [formGroup]="userForm" (ngSubmit)="onSubmit(userForm)">
+                    <div class="form-field">
+                        <input class="inputbox" type="text" id="username" formControlName="user_name"
+                            placeholder="username" />
+                        <div class="error-message"
+                            *ngIf="form['user_name']?.invalid && (form['user_name']?.dirty || form['user_name']?.touched)">
+                            <div *ngIf="form['user_name'].errors">
+                                <div class="individual-error" *ngIf="form['user_name'].errors['required']">
+                                    <img src="../../../assets/error_icon.svg" /> Please provide a Username.
+                                </div>
+                                <div class="individual-error" *ngIf="form['user_name'].errors['maxlength']">
+                                    <img src="../../../assets/error_icon.svg" /> Username cannot exceed more than 50 characters.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input class="inputbox" type="text" id="email" formControlName="email" placeholder="email" />
+                        <div class="error-message"
+                            *ngIf="form['email']?.invalid && (form['email']?.dirty || form['email']?.touched)">
+                            <div *ngIf="form['email'].errors">
+                                <div class="individual-error" *ngIf="form['email'].errors['required']">
+                                    <img src="../../../assets/error_icon.svg" /> Please provide a Email.
+                                </div>
+                                <div class="individual-error" *ngIf="form['email'].errors['maxlength']">
+                                    <img src="../../../assets/error_icon.svg" /> Email cannot exceed more than 50 characters.
+                                </div>
+                                <div class="individual-error" *ngIf="form['email'].errors['email']">
+                                    <img src="../../../assets/error_icon.svg" /> Email Should be a valid email.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-field">
+                        <input class="inputbox" type="password" id="password" formControlName="password"
+                            placeholder="password" />
+                        <div class="error-message"
+                            *ngIf="form['password']?.invalid && (form['password']?.dirty || form['password']?.touched)">
+                            <div *ngIf="form['password'].errors">
+                                <div class="individual-error" *ngIf="form['password'].errors['required']">
+                                    <img src="../../../assets/error_icon.svg" /> Please provide a Password.
+                                </div>
+                                <div class="individual-error" *ngIf="form['password'].errors['maxlength']">
+                                    <img src="../../../assets/error_icon.svg" /> Password cannot exceed more than 50 characters.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="register-button" [disabled]="userForm.invalid">Register</button>
+                </form>
+            </div>
+        </div>
+    </p-card>
+</div>

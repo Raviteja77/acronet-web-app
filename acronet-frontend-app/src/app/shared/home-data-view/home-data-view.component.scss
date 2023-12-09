@@ -1,0 +1,86 @@
+@import '../../../variables';
+
+:host ::ng-deep {
+    .p-dataview-content {
+        border-radius: 10px;
+        background: $secondary-background;
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .p-paginator-bottom {
+        margin-top: 2rem;
+        border-radius: 10px;
+        background: $secondary-background;
+        box-shadow: 0 2px 1px -1px rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.14), 0 1px 3px 0 rgba(0, 0, 0, 0.12);
+    }
+
+    .p-dataview-emptymessage {
+        display: flex;
+        justify-content: center;
+    }
+
+    .p-paginator .p-paginator-pages .p-paginator-page {
+        background: $white;
+        border-radius: 10px;
+    }
+
+    .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+        background: $primary-background;
+        color: $white;
+    }
+
+    .pi {
+        color: $primary-color;
+    }
+
+    .fullName {
+        color: $primary-color;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .email {
+        color: $primary-color;
+    }
+
+    .website-link {
+        color: $primary-color;
+        text-decoration: underline;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+
+    .logo-seal {
+        width: 20px;
+        height: 20px;
+    }
+
+    .p-dataview-emptymessage {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center; 
+    }
+
+    .no_results {
+        width: 80px;
+        filter: invert(22%) sepia(76%) saturate(2931%) hue-rotate(6deg) brightness(80%) contrast(156%);
+    }
+
+    p {
+        color: $primary-color;
+    }
+
+    .p-button-icon-only {
+        background: transparent;
+        border-color: $primary-color;
+
+        &:hover {
+            background: $white;
+        }
+    }
+}

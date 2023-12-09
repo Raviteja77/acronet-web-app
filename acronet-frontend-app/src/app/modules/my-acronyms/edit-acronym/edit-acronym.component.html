@@ -1,0 +1,109 @@
+<div class="home-container"></div>
+<div class="form-wrapper">
+    <div class="form-container">
+        <form [formGroup]="editForm">
+            <div class="form-field">
+                <input class="edit-inputbox" readonly id="acronym_name" formControlName="acronym_name" placeholder="Enter acronym name"/>
+            </div>
+            <div class="form-field">
+                <input class="edit-inputbox" type="text" id="full_form" formControlName="full_form" placeholder="Enter full form"/>
+                <div class="error-message"
+                    *ngIf="form.full_form?.invalid && (form.full_form?.dirty || form.full_form?.touched)">
+                    <div class="individual-error" *ngIf="form.full_form.errors && form.full_form.errors['required']">
+                        <img src="../../../../assets/error_icon.svg" /> Please provide a Full Form.
+                    </div>
+                    <div class="individual-error" *ngIf="form.full_form.errors && form.full_form.errors['maxlength']">
+                        <img src="../../../../assets/error_icon.svg" /> Full form cannot exceed 70 characters.
+                    </div>
+                </div>
+            </div>
+            <div class="form-field">
+                <textarea rows="5" cols="30" pInputTextarea formControlName="description" placeholder="Enter description"></textarea>
+                <div class="error-message"
+                    *ngIf="form.description?.invalid && (form.description?.dirty || form.description?.touched)">
+                    <div class="individual-error" *ngIf="form.description.errors && form.description.errors['required']">
+                        <img src="../../../../assets/error_icon.svg" /> Please provide a Description.
+                    </div>
+                    <div class="individual-error" *ngIf="form.description.errors && form.description.errors['maxlength']">
+                        <img src="../../../../assets/error_icon.svg" /> Description cannot exceed 300 characters.
+                    </div>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="edit-inputbox" type="text" id="location" formControlName="location" placeholder="Enter location"/>
+                <div class="error-message"
+                    *ngIf="form.location?.invalid && (form.location?.dirty || form.location?.touched)">
+                    <div class="individual-error" *ngIf="form.location.errors && form.location.errors['required']">
+                        <img src="../../../../assets/error_icon.svg" /> Please provide a Location.
+                    </div>
+                    <div class="individual-error" *ngIf="form.location.errors && form.location.errors['maxlength']">
+                        <img src="../../../../assets/error_icon.svg" /> Location cannot exceed 20 characters.
+                    </div>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="edit-inputbox" type="text" id="phone_number" formControlName="phone_number" placeholder="Enter phone number"/>
+                <div class="error-message"
+                    *ngIf="form.phone_number?.invalid && (form.phone_number?.dirty || form.phone_number?.touched)">
+                    <div *ngIf="form.phone_number.errors">
+                        <div class="individual-error" *ngIf="form.phone_number.errors['required']">
+                            <img src="../../../../assets/error_icon.svg" /> Please provide a Phone Number.
+                        </div>
+                        <div class="individual-error" *ngIf="form.phone_number.errors['minlength']">
+                            <img src="../../../../assets/error_icon.svg" /> Phone number should be 10 characters.
+                        </div>
+                        <div class="individual-error" *ngIf="form.phone_number.errors['maxlength']">
+                            <img src="../../../../assets/error_icon.svg" /> Phone number cannot exceed 10 characters.
+                        </div>
+                        <div class="individual-error" *ngIf="form.phone_number.errors['pattern']">
+                            <img src="../../../../assets/error_icon.svg" /> Phone number contain only numbers.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="edit-inputbox" type="text" id="email" formControlName="email" placeholder="Enter email"/>
+                <div class="error-message"
+                    *ngIf="form.email?.invalid && (form.email?.dirty || form.email?.touched)">
+                    <div *ngIf="form.email.errors">
+                        <div class="individual-error" *ngIf="form.email.errors['required']">
+                            <img src="../../../../assets/error_icon.svg" /> Please provide a Email.
+                        </div>
+                        <div class="individual-error" *ngIf="form.email.errors['maxlength']">
+                            <img src="../../../../assets/error_icon.svg" /> Email cannot exceed 50 characters.
+                        </div>
+                        <div class="individual-error" *ngIf="form.email.errors['email']">
+                            <img src="../../../../assets/error_icon.svg" /> Email should be a valid email.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-field" *ngIf="openDialogForSuggestedAcronym && (userRole === 'su' || userRole === 'admin')">
+                <p-dropdown formControlName="status" [options]="status" optionLabel="name" placeholder="Status"></p-dropdown>
+                <div class="error-message"
+                    *ngIf="editForm.get('status')?.invalid && (editForm.get('status')?.dirty || editForm.get('status')?.touched)">
+                    <img src="../../../../assets/error_icon.svg" />
+                    <label>Please provide a Status.</label>
+                </div>
+            </div>
+            <div class="form-field">
+                <input class="edit-inputbox" type="text" id="website" formControlName="website" placeholder="Enter website"/>
+                <div class="error-message"
+                    *ngIf="form.website?.invalid && (form.website?.dirty || form.website?.touched)">
+                    <div *ngIf="form.website.errors">
+                        <div class="individual-error" *ngIf="form.website.errors['required']">
+                            <img src="../../../../assets/error_icon.svg" /> Please provide a website.
+                        </div>
+                        <div class="individual-error" *ngIf="form.website.errors['maxlength']">
+                            <img src="../../../../assets/error_icon.svg" /> Acronym name cannot exceed 100 characters.
+                        </div>
+                        <div class="individual-error" *ngIf="form.website.errors['pattern']">
+                            <img src="../../../../assets/error_icon.svg" /> Website should be a valid website.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p-button [disabled]="editForm.invalid" [label]="'Edit ' + buttonName + ' Acronym'" (onClick)="onSubmit()"></p-button>
+        </form>
+    </div>
+</div>

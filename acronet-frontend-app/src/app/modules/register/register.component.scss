@@ -1,0 +1,60 @@
+@import '../../../variables';
+
+.home-container {
+    background: url(../../../assets/clark-seal-bg.svg) no-repeat center fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.1;
+    transform: scaleX(1.8);
+}
+
+.register-container {
+    height: calc(100vh - 100px);
+    position: relative;
+    z-index: 1;
+}
+
+.register-logo {
+    width: 160px;
+    height: 160px;
+    margin-top: 30px;
+}
+
+.form-field {
+    margin-bottom: 30px;
+
+    .inputbox {
+        width: 320px;
+        height: 38px;
+        padding-left: 8px;
+    }
+
+    .error-message {
+        display: flex;
+        align-items: center;
+        margin-top: 10px;
+        color: $primary-color;
+    }
+}
+
+.register-button {
+    background: $secondary-color;
+    color: $white;
+    width: 100px;
+    height: 36px;
+    margin-bottom: 30px;
+}
+
+::ng-deep .p-card-header,
+::ng-deep .p-card-title,
+::ng-deep .p-card-content {
+    display: flex;
+    justify-content: center;
+}
+
+::ng-deep .p-card-title {
+    margin: 20px 0;
+}

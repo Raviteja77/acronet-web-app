@@ -1,0 +1,34 @@
+@import '../../../variables';
+
+.home-container {
+    background: url(../../../assets/clark-seal-bg.svg) no-repeat center fixed;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.1;
+    transform: scaleX(1.8);
+}
+
+.form-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+
+    .form-header {
+        font-size: 30px;
+        font-weight: 700;
+    }
+
+    .create-button {
+        background: $secondary-color;
+        color: $white;
+        width: 100px;
+        height: 36px;
+    }
+}

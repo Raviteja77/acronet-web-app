@@ -1,0 +1,45 @@
+@import '../../../variables';
+
+.word-wrap {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 50%;
+}
+
+.chip {
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 8px;
+    color: white;
+    display: flex;
+    justify-content: center;
+}
+
+.status-approved {
+    background: #16A34A;
+}
+
+.status-rejected {
+    background: $primary-color;
+}
+
+.status-pending {
+    background: #F59E0B;
+}
+
+::ng-deep {
+
+    .pi {
+        color: $primary-color;
+    }
+    
+    .p-button-icon-only {
+        background: transparent;
+        border-color: $primary-color;
+
+        &:hover {
+            background: $white;
+        }
+    }
+}
