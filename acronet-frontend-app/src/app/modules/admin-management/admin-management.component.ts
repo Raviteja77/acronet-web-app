@@ -27,14 +27,14 @@ export class AdminManagementComponent implements OnInit {
     });
   }
 
-  confirmationDialog(user: RegisterUser, status: string) {
+  confirmationDialog(user: RegisterUser, status: string, userType: string) {
     this.confirmationService.confirm({
       message: `Are you sure that you want to ${status} the user <strong>${user.email}</strong>?`,
       header: 'Confirmation',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         if(status == 'update') {
-          this.updateUser(user);
+          this.updateUser(user, userType);
         } else if(status == 'delete') {
           this.deleteUser(user.email);
         }
@@ -48,8 +48,8 @@ export class AdminManagementComponent implements OnInit {
     })
   }
 
-  updateUser(user: RegisterUser) {
-    user['user_type'] = 'admin';
+  updateUser(user: RegisterUser, userType: string) {
+    user['user_type'] = userType === 'admin'? 'user': 'admin';
     this.authService.updateUser(user).subscribe(data => {});
   }
 }
