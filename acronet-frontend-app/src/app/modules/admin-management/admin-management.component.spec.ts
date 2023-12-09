@@ -83,7 +83,7 @@ describe('AdminManagementComponent', () => {
 
     authService.deleteUser.and.returnValue(of([]));
     // Simulate user clicking "OK" in the confirmation dialog
-    component.confirmationDialog(mockUser, 'delete');
+    component.confirmationDialog(mockUser, 'delete', mockUser.user_type);
     confirmObject.accept();
     fixture.detectChanges();
 
@@ -97,7 +97,7 @@ describe('AdminManagementComponent', () => {
 
     authService.updateUser.and.returnValue(of([]));
     // Simulate user clicking "OK" in the confirmation dialog
-    component.confirmationDialog(mockUser, 'update');
+    component.confirmationDialog(mockUser, 'update', mockUser.user_type);
     confirmObject.accept();
     fixture.detectChanges();
 
@@ -109,7 +109,7 @@ describe('AdminManagementComponent', () => {
     const mockUser = { email: 'user1@example.com', user_name: 'User 1', user_type: 'user', password: 'password' };
     
     // Simulate user clicking "Cancel" in the confirmation dialog
-    component.confirmationDialog(mockUser, 'delete');
+    component.confirmationDialog(mockUser, 'delete', mockUser.user_type);
     confirmObject.reject();
     fixture.detectChanges();
 

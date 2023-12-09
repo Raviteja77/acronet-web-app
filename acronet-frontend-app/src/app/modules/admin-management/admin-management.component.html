@@ -14,8 +14,12 @@
                 <td>{{ user.email }}</td>
                 <td>{{ user.user_type }}</td>
                 <td class="flex gap-2" *ngIf="user.user_type == 'user'">
-                    <p-button label="Make Admin" (onClick)="confirmationDialog(user, 'update')"></p-button>
-                    <p-button icon="pi pi-trash" (onClick)="confirmationDialog(user, 'delete')"></p-button>
+                    <p-button label="Make Admin" (onClick)="confirmationDialog(user, 'update', user.user_type)"></p-button>
+                    <p-button icon="pi pi-trash" (onClick)="confirmationDialog(user, 'delete', user.user_type)"></p-button>
+                </td>
+                <td class="flex gap-2" *ngIf="user.user_type == 'admin'">
+                    <p-button label="Make User" (onClick)="confirmationDialog(user, 'update', user.user_type)"></p-button>
+                    <p-button icon="pi pi-trash" (onClick)="confirmationDialog(user, 'delete', user.user_type)"></p-button>
                 </td>
                 <td *ngIf="user.user_type == 'su'">
                     No Action

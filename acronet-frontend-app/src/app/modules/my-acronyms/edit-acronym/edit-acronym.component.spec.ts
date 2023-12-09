@@ -95,7 +95,7 @@ describe('EditAcronymComponent', () => {
     component.openDialogForSuggestedAcronym = true;
 
     // Assert
-    expect(component.buttonName).toBe('Suggested');
+    expect(component.buttonName).toBe('Submit');
   });
 
   it('should call updateSuggestedAcronym when onSubmit is called for suggested acronym', () => {
