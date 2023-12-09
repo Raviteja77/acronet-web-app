@@ -33,7 +33,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     });
     this.suggestedAcronymSubscription =
       this.acronymService.suggestedAcronyms$.subscribe((data) => {
-        if (data) {
+        if (data?.length > 0) {
           this.isMyAcronymsAvailable = true;
         }
       });

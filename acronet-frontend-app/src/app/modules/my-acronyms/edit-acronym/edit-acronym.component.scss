@@ -1,0 +1,28 @@
+@import '../../../../variables';
+
+::ng-deep {
+    .p-button {
+        background: transparent;
+        border-color: $primary-color;
+        color: $primary-color;
+
+        &:hover {
+            background: $white;
+        }
+    }
+
+    .form-wrapper {
+        display: flex;
+        justify-content: center;
+    }
+
+    .edit-inputbox {
+        width: 500px;
+        height: 38px;
+        padding-left: 8px;
+    }
+
+    .p-dropdown {
+        width: 100%;
+    }
+}

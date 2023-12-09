@@ -21,7 +21,7 @@
 </p-menubar>
 
 <p-overlayPanel #op>
-    <ul class="menu-list">
-        <li *ngIf="authService.isLoggedIn" (click)="logout()" style="list-style: none;">Logout</li>
+    <ul class="menu-list logout">
+        <li *ngIf="authService.isLoggedIn" (click)="logout(); op.hide();" style="list-style: none;">Logout</li>
     </ul>
 </p-overlayPanel>

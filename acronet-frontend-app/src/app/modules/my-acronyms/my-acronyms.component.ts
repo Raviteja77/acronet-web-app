@@ -54,6 +54,15 @@ export class MyAcronymsComponent implements OnInit {
     );
   }
 
+  getStatusColor(status: string): string {
+    if(status === 'approved') {
+      return 'status-approved';
+    } else if(status === 'rejected') {
+      return 'status-rejected';
+    }
+    return 'status-pending';
+  }
+
   show(suggestedAcronym: SuggestAcronym) {
     this.ref = this.dialogService.open(EditAcronymComponent, {
       data: {

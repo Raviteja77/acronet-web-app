@@ -6,6 +6,7 @@ import { AcronymsService } from 'src/app/services/acronyms/acronyms.service';
 import { EditAcronymComponent } from './edit-acronym.component';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ComponentRef } from '@angular/core';
+import { ButtonModule } from 'primeng/button';
 
 describe('EditAcronymComponent', () => {
   let component: EditAcronymComponent;
@@ -23,7 +24,7 @@ describe('EditAcronymComponent', () => {
 
     TestBed.configureTestingModule({
       declarations: [EditAcronymComponent],
-      imports: [ReactiveFormsModule],
+      imports: [ReactiveFormsModule, ButtonModule],
       providers: [
         FormBuilder,
         { provide: AcronymsService, useValue: acronymServiceSpy },

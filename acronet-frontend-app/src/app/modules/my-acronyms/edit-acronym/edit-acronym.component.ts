@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogConfig } from 'primeng/dynamicdialog';
 import { AcronymsService } from 'src/app/services/acronyms/acronyms.service';
@@ -12,14 +12,14 @@ import { AcronymsService } from 'src/app/services/acronyms/acronyms.service';
 export class EditAcronymComponent implements OnInit {
   openDialogForSuggestedAcronym: boolean = false;
   editForm = this.formBuilder.group({
-    acronym_name: [''],
-    full_form: [''],
-    description: [''],
-    location: [''],
-    phone_number: [''],
-    email: [''],
+    acronym_name: ['', [Validators.required, Validators.maxLength(10)]],
+    full_form: ['', [Validators.required, Validators.maxLength(70)]],
+    description: ['', [Validators.required, Validators.maxLength(300)]],
+    location: ['', [Validators.required, Validators.maxLength(20)]],
+    phone_number: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern("^[0-9]*$")]],
+    email: ['', [Validators.required, Validators.maxLength(50), Validators.email]],
     status: [ { name: 'Pending', code: 'pending' } ],
-    website: [''],
+    website: ['', [Validators.required, Validators.maxLength(100), Validators.pattern('(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?')]],
   });
   status!: { name: string; code: string }[];
   userRole!: string;
@@ -34,6 +34,10 @@ export class EditAcronymComponent implements OnInit {
 
   get buttonName() {
     return this.openDialogForSuggestedAcronym ? 'Suggested' : '';
+  }
+
+  get form() {
+    return this.editForm.controls;
   }
 
   ngOnInit(): void {

@@ -206,7 +206,7 @@ describe('AcronymsService', () => {
 
   it('should update suggested acronym with status "approved"', () => {
     // Mock localStorage.getItem to simulate a user being logged in
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify({ 'user_name': 'testuser', 'email': 'testuser@example.com' }));
+    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify({ 'user_name': 'testuser', 'email': 'testuser@example.com', 'user_type': 'user' }));
 
     const editSuggestedAcronym = { 
       acronym_name: 'SPS',
@@ -235,7 +235,7 @@ describe('AcronymsService', () => {
 
   it('should update suggested acronym with status "pending"', () => {
     // Mock localStorage.getItem to simulate a user being logged in
-    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify({ 'user_name': 'testuser', 'email': 'testuser@example.com' }));
+    spyOn(localStorage, 'getItem').and.returnValue(JSON.stringify({ 'user_name': 'testuser', 'email': 'testuser@example.com', 'user_type': 'user' }));
 
     const editSuggestedAcronym = { 
       acronym_name: 'SPS',
@@ -302,6 +302,7 @@ describe('AcronymsService', () => {
     };
 
     httpSpy.put.and.returnValue(of(updateAcronym));
+    httpSpy.get.and.returnValue(of([updateAcronym]));
     service.updateAcronym(updateAcronym);
 
     expect(messageServiceSpy.add).toHaveBeenCalledWith({

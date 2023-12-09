@@ -1,7 +1,7 @@
 <div class="card mt-5">
     <p-dataView #dv [value]="getAcronyms()" [rows]="2" [paginator]="true">
         <ng-template let-acronym pTemplate="listItem">
-            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4">
+            <div class="flex flex-column xl:flex-row xl:align-items-start p-4 gap-4" style="width: 550px;">
                 <div class="flex flex-column sm:flex-row justify-content-between align-items-between xl:align-items-start flex-1 gap-4">
                     <div class="flex flex-column align-items-center sm:align-items-start gap-2">
                         <div class="fullName font-bold">{{ acronym.full_form }}</div>
@@ -32,7 +32,7 @@
                             </span>
                         </div>
                     </div>
-                    <div class="flex gap-2" *ngIf="authService.isLoggedIn && userRole == 'admin'">
+                    <div class="flex gap-2" *ngIf="authService.isLoggedIn && (userRole == 'admin' || userRole == 'su')">
                         <p-button icon="pi pi-pencil" (onClick)="show(acronym)"></p-button>
                         <p-button icon="pi pi-trash" (onClick)="ConfirmationDialog(acronym)"></p-button>
                     </div>

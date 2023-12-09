@@ -5,10 +5,8 @@ import { MessageService } from "primeng/api";
 export class GlobalErrorHandler implements ErrorHandler {
     constructor(private messageService: MessageService) {}
     handleError(error: any): void {
-        this.messageService.add({
-            severity: 'error',
-            summary: 'Error',
-            detail: 'Something went wrong.'
-        });
+        console.log(error);
+        
+        alert(error.error)
     }
 }

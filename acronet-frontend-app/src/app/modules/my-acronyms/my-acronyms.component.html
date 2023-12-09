@@ -22,7 +22,7 @@
                 <td>{{ suggestedAcronym.phone_number }}</td>
                 <td>{{ suggestedAcronym.email }}</td>
                 <td><a [href]="suggestedAcronym.website" target="_blank">{{ suggestedAcronym.website }}</a></td>
-                <td><p-chip [label]="suggestedAcronym.status"></p-chip></td>
+                <td><div class="chip" [ngClass]="getStatusColor(suggestedAcronym.status)">{{ suggestedAcronym.status }}</div></td>
                 <td>
                     <div class="flex gap-2">
                         <p-button icon="pi pi-pencil" (onClick)="show(suggestedAcronym)"></p-button>
