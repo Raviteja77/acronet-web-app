@@ -33,7 +33,7 @@ export class EditAcronymComponent implements OnInit {
   ) {}
 
   get buttonName() {
-    return this.openDialogForSuggestedAcronym ? 'Suggested' : '';
+    return this.openDialogForSuggestedAcronym ? 'Submit' : 'Edit Acronym';
   }
 
   get form() {

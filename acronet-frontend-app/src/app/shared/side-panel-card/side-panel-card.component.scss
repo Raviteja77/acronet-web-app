@@ -62,7 +62,7 @@
         span {
 
             &:hover, &:focus {
-                transform: scale(1.12);
+                transform: scale(1.02);
             }
         }
 
@@ -75,6 +75,11 @@
     .p-listbox {
         background: transparent;
         border: none;
+    }
+
+    .p-listbox-item {
+        word-wrap: break-word;
+        width: 250px;
     }
 
     .p-listbox .p-listbox-list {

@@ -48,7 +48,7 @@ export class MyAcronymsComponent implements OnInit {
     this.acronymService.suggestedAcronyms$.subscribe(
       (data: SuggestAcronym[]) => {
         if (data) {
-          this.suggestedAcronyms = data;
+          this.suggestedAcronyms = data.filter(el => el.status !== 'approved');
         }
       }
     );

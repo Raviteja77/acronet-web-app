@@ -1,4 +1,4 @@
-<ng-container *ngIf="suggestedAcronyms.length > 0">
+<ng-container>
     <p-table [value]="suggestedAcronyms" [tableStyle]="{ 'min-width': '50rem' }">
         <ng-template pTemplate="header">
             <tr>
@@ -16,8 +16,8 @@
         <ng-template pTemplate="body" let-suggestedAcronym let-rowIndex="rowIndex">
             <tr>
                 <td>{{ suggestedAcronym.acronym_name }}</td>
-                <td>{{ suggestedAcronym.full_form }}</td>
-                <td>{{ suggestedAcronym.description }}</td>
+                <td class="word-format">{{ suggestedAcronym.full_form }}</td>
+                <td class="word-format">{{ suggestedAcronym.description }}</td>
                 <td>{{ suggestedAcronym.location }}</td>
                 <td>{{ suggestedAcronym.phone_number }}</td>
                 <td>{{ suggestedAcronym.email }}</td>
@@ -29,6 +29,11 @@
                         <p-button icon="pi pi-trash" (onClick)="confirmationDialog(suggestedAcronym)"></p-button>
                     </div>
                 </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="9">No Suggested Acronyms found or Acronyms got approved.</td>
             </tr>
         </ng-template>
     </p-table>
