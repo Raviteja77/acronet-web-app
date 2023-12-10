@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  web:
+    build: .
+    # volumes:
+    #   - .:/app
+    ports:
+      - 4200:4200
+    image: app:F_acronet
+    container_name: clark_acronet_ui
+    command: ng serve --host 0.0.0.0 --port 4200
